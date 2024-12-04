@@ -1,58 +1,69 @@
 ﻿using HenriksHobbyLager.Interfaces;
-using HenriksHobbyLager_a_posteriori.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace HenriksHobbyLager.Repositories
 {
-    public class ProductRepository: IRepository// Hanterar datalager, ändringar av pris, antal, kategori och namn
+    public class ProductRepository : IProductRepository // Implementerar gränssnittet
     {
-        private readonly List<Product> _products = new();
-        private int _nextId = 1;
-
         public IEnumerable<Product> GetAll()
         {
-            return _products;
+            using (var context = new AppDbContext())
+            {
+                return context.Products.ToList(); // Hämtar alla produkter från databasen
+            }
         }
 
         public Product GetById(int id)
         {
-            return _products.FirstOrDefault(p => p.Id == id);
+            using (var context = new AppDbContext())
+            {
+                return context.Products.FirstOrDefault(p => p.Id == id); // Hämtar produkt med specifikt ID
+            }
         }
 
         public void Add(Product product)
         {
-            product.Id = _nextId++;
-            product.Created = DateTime.Now;
-            _products.Add(product);
+            using (var context = new AppDbContext())
+            {
+                product.Created = DateTime.Now; // Sätter skapelsedatum
+                context.Products.Add(product); // Lägger till produkten i databasen
+                context.SaveChanges(); // Sparar ändringar i databasen
+            }
         }
 
         public void Update(Product updatedProduct)
         {
-            var product = GetById(updatedProduct.Id);
-            if (product != null)
+            using (var context = new AppDbContext())
             {
-                product.Name = updatedProduct.Name;
-                product.Price = updatedProduct.Price;
-                product.Stock = updatedProduct.Stock;
-                product.Category = updatedProduct.Category;
-             
+                var product = context.Products.FirstOrDefault(p => p.Id == updatedProduct.Id);
+                if (product != null)
+                {
+                    product.Name = updatedProduct.Name;
+                    product.Price = updatedProduct.Price;
+                    product.Stock = updatedProduct.Stock;
+                    product.Category = updatedProduct.Category;
+                    product.Updated = DateTime.Now; // Uppdaterar tidstämpel
+
+                    context.SaveChanges(); // Sparar ändringar
+                }
             }
         }
 
         public void Delete(int id)
         {
-            var product = GetById(id);
-            if (product != null)
+            using (var context = new AppDbContext())
             {
-                _products.Remove(product);
+                var product = context.Products.FirstOrDefault(p => p.Id == id);
+                if (product != null)
+                {
+                    context.Products.Remove(product); // Tar bort produkten
+                    context.SaveChanges(); // Sparar ändringar
+                }
             }
         }
-    }       
-
+    }
 }
 
-    
- 
+
+
