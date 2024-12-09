@@ -1,10 +1,12 @@
 ﻿using HenriksHobbyLager.Repositories;
 using HenriksHobbyLager.Helpers;
 using System;
+using HenriksHobbyLager.Interfaces;
 
 namespace HenriksHobbyLager.Services
 {
-    public class ProductService // Kontrollerar lagersaldo mot databasen m.m. 
+    public class ProductService : IProductService
+    // Kontrollerar lagersaldo mot databasen m.m. 
     {
         private readonly ProductRepository _repository;
 

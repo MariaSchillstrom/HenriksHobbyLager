@@ -1,5 +1,5 @@
 ﻿
-public interface IProduct
+public interface IProduct //Skapade denna för enklare implemetering i framtiden av eventuellt nya klasser med samma properties
 {
     string Category { get; set; }
     DateTime Created { get; set; }
