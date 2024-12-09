@@ -11,13 +11,11 @@ public class AppDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        if (!optionsBuilder.IsConfigured)
-        {
-            // Uppdaterad sökväg till din databas
-            optionsBuilder.UseSqlite(@"Data Source=C:\Users\maria\source\repos\HHL KOPIA\HenriksHobbyLager\HHLDatabas.db");
-        }
+        optionsBuilder.UseSqlite("Data Source=C:\\Data\\repos\\HHL KOPIA\\HenriksHobbyLager\\HHLDatabas.db");
     }
+
 }
+
 
 
 

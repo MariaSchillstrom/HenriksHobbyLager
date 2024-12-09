@@ -4,7 +4,7 @@ using HenriksHobbyLager.Repositories;
 
 namespace HenriksHobbyLager.ProgramManagement
 {
-    internal class HenriksHobbyLagerProgramManager
+    internal class HenriksHobbyLagerProgramManager//Logiken för programmet.
     {
         public void Run()
         {
@@ -16,7 +16,7 @@ namespace HenriksHobbyLager.ProgramManagement
 
                 foreach (var toy in toys)
                 {
-                    Console.WriteLine($"Name: {toy.Name}, Price: {toy.Price}, Stock: {toy.Stock}");
+                    Console.WriteLine($"Name: {toy.Name}, Price: {toy.Price}, Category: {toy.Category},  Stock: {toy.Stock}");
                 }
             }
 
