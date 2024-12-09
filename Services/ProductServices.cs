@@ -1,6 +1,5 @@
 ﻿using HenriksHobbyLager.Repositories;
 using HenriksHobbyLager.Helpers;
-using HenriksHobbyLager_a_posteriori.Models;
 using System;
 
 namespace HenriksHobbyLager.Services

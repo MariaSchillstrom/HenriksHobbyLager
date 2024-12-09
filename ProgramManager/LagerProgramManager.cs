@@ -1,6 +1,6 @@
-﻿using HenriksHobbyLager.Repositories;
-using HenriksHobbyLager.Services;
+﻿using HenriksHobbyLager.Services;
 using HenriksHobbyLager.Helpers;
+using HenriksHobbyLager.Repositories;
 
 namespace HenriksHobbyLager.ProgramManagement
 {
@@ -11,7 +11,7 @@ namespace HenriksHobbyLager.ProgramManagement
             // Testa anslutningen till databasen
             using (var context = new AppDbContext())
             {
-                var toys = context.Products.ToList(); // Hämta alla rader från tabellen
+                var toys = context.Toys.ToList(); // Hämta alla rader från tabellen Toys
                 Console.WriteLine($"Hittade {toys.Count} leksaker i databasen!");
 
                 foreach (var toy in toys)
@@ -35,4 +35,3 @@ namespace HenriksHobbyLager.ProgramManagement
         }
     }
 }
-

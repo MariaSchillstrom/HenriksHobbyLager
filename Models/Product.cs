@@ -5,7 +5,8 @@ using System.Linq;
 
 
 
-namespace HenriksHobbyLager_a_posteriori.Models { }
+namespace HenriksHobbyLager.Repositories
+{ }
 [Table("Toys")]
 public class Product
 {

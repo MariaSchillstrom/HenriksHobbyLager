@@ -4,13 +4,13 @@ using System.Linq;
 
 namespace HenriksHobbyLager.Repositories
 {
-    public class ProductRepository : IProductRepository // Implementerar gränssnittet
+    public class ProductRepository : IProductRepository
     {
         public IEnumerable<Product> GetAll()
         {
             using (var context = new AppDbContext())
             {
-                return context.Products.ToList(); // Hämtar alla produkter från databasen
+                return context.Toys.ToList(); // Hämtar alla produkter från databasen
             }
         }
 
@@ -18,7 +18,7 @@ namespace HenriksHobbyLager.Repositories
         {
             using (var context = new AppDbContext())
             {
-                return context.Products.FirstOrDefault(p => p.Id == id); // Hämtar produkt med specifikt ID
+                return context.Toys.FirstOrDefault(p => p.Id == id); // Hämtar produkt med specifikt ID
             }
         }
 
@@ -27,7 +27,7 @@ namespace HenriksHobbyLager.Repositories
             using (var context = new AppDbContext())
             {
                 product.Created = DateTime.Now; // Sätter skapelsedatum
-                context.Products.Add(product); // Lägger till produkten i databasen
+                context.Toys.Add(product); // Lägger till produkten i databasen
                 context.SaveChanges(); // Sparar ändringar i databasen
             }
         }
@@ -36,7 +36,7 @@ namespace HenriksHobbyLager.Repositories
         {
             using (var context = new AppDbContext())
             {
-                var product = context.Products.FirstOrDefault(p => p.Id == updatedProduct.Id);
+                var product = context.Toys.FirstOrDefault(p => p.Id == updatedProduct.Id);
                 if (product != null)
                 {
                     product.Name = updatedProduct.Name;
@@ -54,16 +54,14 @@ namespace HenriksHobbyLager.Repositories
         {
             using (var context = new AppDbContext())
             {
-                var product = context.Products.FirstOrDefault(p => p.Id == id);
+                var product = context.Toys.FirstOrDefault(p => p.Id == id); // Söker efter produkten med ID
                 if (product != null)
                 {
-                    context.Products.Remove(product); // Tar bort produkten
-                    context.SaveChanges(); // Sparar ändringar
+                    context.Toys.Remove(product); // Tar bort produkten från databasen
+                    context.SaveChanges(); // Sparar ändringarna
                 }
             }
         }
     }
 }
-
-
 
