@@ -29,9 +29,9 @@ namespace HenriksHobbyLager.ProgramManagement
             while (true)
             {
                 menuHandler.ShowMenu(); // Visa menyn
-                var choice = ConsoleHelper.ReadInput("Välj ett alternativ 1-5"); // Läs in val
+                var choice = ConsoleHelper.ReadInput("Välj ett alternativ 1-6"); // Läs in val
                 menuHandler.HandleMenuChoice(choice);
-                if  ( 0 < 5)// om valet är 0 eller större än 5 
+                if  ( 0 < 6)// om valet är 0 eller större än 6 
 
                     Console.WriteLine("Fel val, vänligen försök igen");//felmeddelande 
 

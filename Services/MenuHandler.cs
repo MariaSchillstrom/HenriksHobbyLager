@@ -31,16 +31,19 @@ namespace HenriksHobbyLager
                 case "1":
                     _service.ShowAllProducts();
                     break;
-                case "2":
-                    _service.AddProduct();
+                case "2":                    
+                    _service.SearchProduct();
                     break;
                 case "3":
-                    _service.UpdateProduct();
+                    _service.AddProduct();
                     break;
                 case "4":
-                    _service.DeleteProduct();
+                    _service.UpdateProduct();
                     break;
                 case "5":
+                    _service.DeleteProduct();
+                    break;
+                case "6":
                     ConsoleHelper.PrintMessage("Avslutar programmet...");
                     Environment.Exit(0); // Avslutar programmet
                     break;

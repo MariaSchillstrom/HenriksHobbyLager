@@ -1,4 +1,5 @@
 ﻿using HenriksHobbyLager.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,6 +22,19 @@ namespace HenriksHobbyLager.Repositories
                 return context.Toys.FirstOrDefault(p => p.Id == id); // Hämtar produkt med specifikt ID
             }
         }
+
+        public IEnumerable<Product> Search(string searchTerm)
+        {
+            using (var context = new AppDbContext())
+            {
+                string lowerSearchTerm = searchTerm.ToLower(); // Konverterar söktermen till små bokstäver
+
+                return context.Toys
+                    .Where(p => p.Name.ToLower().Contains(lowerSearchTerm)) // Jämför med små bokstäver
+                    .ToList(); // Konvertera till en lista för att returnera resultaten
+            }
+        }
+
 
         public void Add(Product product)
         {
@@ -62,11 +76,5 @@ namespace HenriksHobbyLager.Repositories
                 }
             }
         }
-
-        internal IEnumerable<Product> Search(string searchTerm)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
-

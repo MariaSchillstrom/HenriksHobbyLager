@@ -46,10 +46,17 @@ namespace HenriksHobbyLager.Services
 
         public void SearchProduct()
         {
-            var searchTerm = ConsoleHelper.ReadInput("Ange sökterm: ");
+            var searchTerm = ConsoleHelper.ReadInput("Ange sökterm: ").Trim();
+
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                ConsoleHelper.PrintMessage("Sökterm kan inte vara tom. Försök igen.");
+                return;
+            }
+
             var searchResults = _repository.Search(searchTerm);
 
-            if (searchResults == null || !searchResults.Any())
+            if (!searchResults.Any())
             {
                 ConsoleHelper.PrintMessage("Inga produkter hittades.");
                 return;
@@ -58,6 +65,7 @@ namespace HenriksHobbyLager.Services
             ConsoleHelper.PrintMessage("Produkter som matchar din sökning:");
             ConsoleHelper.PrintProducts(searchResults);
         }
+
 
         public void UpdateProduct()
         {
