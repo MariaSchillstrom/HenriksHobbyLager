@@ -17,10 +17,11 @@ namespace HenriksHobbyLager
         {
             ConsoleHelper.PrintMessage("=== Henriks HobbyLager™ ===");
             ConsoleHelper.PrintMessage("1. Visa alla produkter");
-            ConsoleHelper.PrintMessage("2. Lägg till produkt");
-            ConsoleHelper.PrintMessage("3. Uppdatera produkt");
-            ConsoleHelper.PrintMessage("4. Ta bort produkt");
-            ConsoleHelper.PrintMessage("5. Avsluta");
+            ConsoleHelper.PrintMessage("2. Sök produkt");
+            ConsoleHelper.PrintMessage("3. Lägg till produkt");
+            ConsoleHelper.PrintMessage("4. Uppdatera produkt");
+            ConsoleHelper.PrintMessage("5. Ta bort produkt");
+            ConsoleHelper.PrintMessage("6. Avsluta");
         }
 
         public void HandleMenuChoice(string choice)

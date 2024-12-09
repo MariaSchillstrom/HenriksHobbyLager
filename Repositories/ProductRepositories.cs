@@ -62,6 +62,11 @@ namespace HenriksHobbyLager.Repositories
                 }
             }
         }
+
+        internal IEnumerable<Product> Search(string searchTerm)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

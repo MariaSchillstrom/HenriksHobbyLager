@@ -25,12 +25,22 @@ namespace HenriksHobbyLager.ProgramManagement
             var productService = new ProductService(repository); // Hanterar logik
             var menuHandler = new MenuHandler(productService); // Hanterar menyval
 
-            // Kör huvudloopen för menyhantering
+            // Huvudloopen för programmet
             while (true)
             {
                 menuHandler.ShowMenu(); // Visa menyn
-                var choice = ConsoleHelper.ReadInput("Välj ett alternativ"); // Läs in val
-                menuHandler.HandleMenuChoice(choice); // Hantera valet
+                var choice = ConsoleHelper.ReadInput("Välj ett alternativ 1-5"); // Läs in val
+                menuHandler.HandleMenuChoice(choice);
+                if  ( 0 < 5)// om valet är 0 eller större än 5 
+
+                    Console.WriteLine("Fel val, vänligen försök igen");//felmeddelande 
+
+
+
+                
+
+
+
             }
         }
     }

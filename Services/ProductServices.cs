@@ -6,7 +6,6 @@ using HenriksHobbyLager.Interfaces;
 namespace HenriksHobbyLager.Services
 {
     public class ProductService : IProductService
-    // Kontrollerar lagersaldo mot databasen m.m. 
     {
         private readonly ProductRepository _repository;
 
@@ -15,7 +14,7 @@ namespace HenriksHobbyLager.Services
             _repository = repository;
         }
 
-        public void AddProduct()// ConsoleHelper för att hantera input och output
+        public void AddProduct()
         {
             ConsoleHelper.PrintMessage("Lägg till en ny produkt:");
 
@@ -31,26 +30,6 @@ namespace HenriksHobbyLager.Services
             ConsoleHelper.PrintMessage("Produkten har lagts till!");
         }
 
-        public void UpdateProduct()
-        {
-            var id = int.Parse(ConsoleHelper.ReadInput("Ange produkt-ID att uppdatera"));
-            var product = _repository.GetById(id);
-
-            if (product == null)
-            {
-                ConsoleHelper.PrintMessage("Produkten hittades inte.");
-                return;
-            }
-
-            product.Name = ConsoleHelper.ReadInput("Nytt namn (lämna tomt för att behålla)");
-            product.Price = decimal.TryParse(ConsoleHelper.ReadInput("Nytt pris"), out var price) ? price : product.Price;
-            product.Stock = int.TryParse(ConsoleHelper.ReadInput("Ny lagerstatus"), out var stock) ? stock : product.Stock;
-            product.Category = ConsoleHelper.ReadInput("Ny kategori (lämna tomt för att behålla)");
-
-            _repository.Update(product);
-            ConsoleHelper.PrintMessage("Produkten har uppdaterats!");
-        }
-
         public void ShowAllProducts()
         {
             var products = _repository.GetAll();
@@ -63,6 +42,41 @@ namespace HenriksHobbyLager.Services
 
             ConsoleHelper.PrintMessage("=== Alla produkter ===");
             ConsoleHelper.PrintProducts(products);
+        }
+
+        public void SearchProduct()
+        {
+            var searchTerm = ConsoleHelper.ReadInput("Ange sökterm: ");
+            var searchResults = _repository.Search(searchTerm);
+
+            if (searchResults == null || !searchResults.Any())
+            {
+                ConsoleHelper.PrintMessage("Inga produkter hittades.");
+                return;
+            }
+
+            ConsoleHelper.PrintMessage("Produkter som matchar din sökning:");
+            ConsoleHelper.PrintProducts(searchResults);
+        }
+
+        public void UpdateProduct()
+        {
+            var id = int.Parse(ConsoleHelper.ReadInput("Ange produkt-ID att uppdatera"));
+            var product = _repository.GetById(id);
+
+            if (product == null)
+            {
+                ConsoleHelper.PrintMessage("Produkten hittades inte.");
+                return;
+            }
+
+            product.Name = ConsoleHelper.ReadInput("Nytt namn (lämna tomt för att behålla)") ?? product.Name;
+            product.Price = decimal.TryParse(ConsoleHelper.ReadInput("Nytt pris"), out var price) ? price : product.Price;
+            product.Stock = int.TryParse(ConsoleHelper.ReadInput("Ny lagerstatus"), out var stock) ? stock : product.Stock;
+            product.Category = ConsoleHelper.ReadInput("Ny kategori (lämna tomt för att behålla)") ?? product.Category;
+
+            _repository.Update(product);
+            ConsoleHelper.PrintMessage("Produkten har uppdaterats!");
         }
 
         public void DeleteProduct()
