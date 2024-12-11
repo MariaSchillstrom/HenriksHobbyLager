@@ -31,7 +31,8 @@ namespace HenriksHobbyLager
                 case "1":
                     _service.ShowAllProducts();
                     break;
-                case "2":                    
+                case "2":
+                    
                     _service.SearchProduct();
                     break;
                 case "3":
@@ -49,7 +50,7 @@ namespace HenriksHobbyLager
                     break;
                 default:
                     ConsoleHelper.PrintMessage("Ogiltigt val, försök igen.");
-                    break;
+                    break;// om valet är 0 eller större än 6
             }
 
             ConsoleHelper.PrintMessage("\nTryck på valfri tangent för att fortsätta...");

@@ -50,7 +50,7 @@ namespace HenriksHobbyLager.Services
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                ConsoleHelper.PrintMessage("Sökterm kan inte vara tom. Försök igen.");
+                ConsoleHelper.PrintMessage("Vänligen ange en sökterm");
                 return;
             }
 
@@ -92,6 +92,7 @@ namespace HenriksHobbyLager.Services
             var id = int.Parse(ConsoleHelper.ReadInput("Ange produkt-ID att ta bort"));
             _repository.Delete(id);
             ConsoleHelper.PrintMessage("Produkten har tagits bort!");
+
         }
     }
 }
