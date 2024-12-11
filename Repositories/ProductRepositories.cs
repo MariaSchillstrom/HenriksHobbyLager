@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace HenriksHobbyLager.Repositories
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository
     {
         public IEnumerable<Product> GetAll()
         {
