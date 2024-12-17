@@ -1,4 +1,4 @@
-﻿using HenriksHobbyLager_a_posteriori.Models;
+﻿
 using System;
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ namespace HenriksHobbyLager.Helpers
 {
     public static class ConsoleHelper//För att slippa alla console.writeline och console.readline i Program
     {
-        public static void PrintProduct(Product product)
+        public static void PrintProduct(Product product)//Skriver ut en produkt
         {
             Console.WriteLine($"ID: {product.Id}");
             Console.WriteLine($"Namn: {product.Name}");
@@ -26,7 +26,7 @@ namespace HenriksHobbyLager.Helpers
             }
         }
 
-        public static string ReadInput(string prompt)
+        public static string ReadInput(string prompt)//Läser in en sträng från användaren tex namn, pris, kategori
         {
             Console.Write($"{prompt}: ");
             return Console.ReadLine();
