@@ -7,6 +7,8 @@ namespace HenriksHobbyLager.Repositories
 {
     public class ProductRepository
     {
+        private object id;
+
         public IEnumerable<Product> GetAll()
         {
             using (var context = new AppDbContext())
@@ -50,31 +52,22 @@ namespace HenriksHobbyLager.Repositories
         {
             using (var context = new AppDbContext())
             {
-                var product = context.Toys.FirstOrDefault(p => p.Id == updatedProduct.Id);
-                if (product != null)
+                var product = context.Toys.FirstOrDefault(p => p.Id == id);
+                if (product == null)
                 {
-                    product.Name = updatedProduct.Name;
-                    product.Price = updatedProduct.Price;
-                    product.Stock = updatedProduct.Stock;
-                    product.Category = updatedProduct.Category;
-                    product.Updated = DateTime.Now; // Uppdaterar tidstämpel
-
-                    context.SaveChanges(); // Sparar ändringar
+                    Console.WriteLine($"Produkt med ID {id} hittades inte.");
+                }
+                else
+                {
+                    context.Toys.Remove(product);
+                    context.SaveChanges();
                 }
             }
         }
 
-        public void Delete(int id)
+        internal void Delete(int id)
         {
-            using (var context = new AppDbContext())
-            {
-                var product = context.Toys.FirstOrDefault(p => p.Id == id); // Söker efter produkten med ID
-                if (product != null)
-                {
-                    context.Toys.Remove(product); // Tar bort produkten från databasen
-                    context.SaveChanges(); // Sparar ändringarna
-                }
-            }
+            throw new NotImplementedException();
         }
     }
 }
