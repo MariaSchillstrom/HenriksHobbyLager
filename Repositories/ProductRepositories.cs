@@ -52,14 +52,21 @@ namespace HenriksHobbyLager.Repositories
         {
             using (var context = new AppDbContext())
             {
-                var product = context.Toys.FirstOrDefault(p => p.Id == id);
+                var product = context.Toys.Find(updatedProduct.Id);
                 if (product == null)
+
+
                 {
+               
                     Console.WriteLine($"Produkt med ID {id} hittades inte.");
                 }
                 else
                 {
-                    context.Toys.Remove(product);
+                    product.Name = updatedProduct.Name;
+                    product.Price = updatedProduct.Price;
+                    product.Stock = updatedProduct.Stock;
+                    product.Category = updatedProduct.Category;
+                    product.Updated = DateTime.Now;
                     context.SaveChanges();
                 }
             }
