@@ -1,4 +1,4 @@
-﻿namespace HenriksHobbyLager.Repositories
+﻿namespace HenriksHobbyLager.Interfaces
 {
     public interface IProductRepository
     {

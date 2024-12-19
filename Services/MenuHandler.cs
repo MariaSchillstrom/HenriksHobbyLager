@@ -17,10 +17,11 @@ namespace HenriksHobbyLager
         {
             ConsoleHelper.PrintMessage("=== Henriks HobbyLager™ ===");
             ConsoleHelper.PrintMessage("1. Visa alla produkter");
-            ConsoleHelper.PrintMessage("2. Lägg till produkt");
-            ConsoleHelper.PrintMessage("3. Uppdatera produkt");
-            ConsoleHelper.PrintMessage("4. Ta bort produkt");
-            ConsoleHelper.PrintMessage("5. Avsluta");
+            ConsoleHelper.PrintMessage("2. Sök produkt");
+            ConsoleHelper.PrintMessage("3. Lägg till produkt");
+            ConsoleHelper.PrintMessage("4. Uppdatera produkt");
+            ConsoleHelper.PrintMessage("5. Ta bort produkt");
+            ConsoleHelper.PrintMessage("6. Avsluta");
         }
 
         public void HandleMenuChoice(string choice)
@@ -31,21 +32,25 @@ namespace HenriksHobbyLager
                     _service.ShowAllProducts();
                     break;
                 case "2":
-                    _service.AddProduct();
+                    
+                    _service.SearchProduct();
                     break;
                 case "3":
-                    _service.UpdateProduct();
+                    _service.AddProduct();
                     break;
                 case "4":
-                    _service.DeleteProduct();
+                    _service.UpdateProduct();
                     break;
                 case "5":
+                    _service.DeleteProduct();
+                    break;
+                case "6":
                     ConsoleHelper.PrintMessage("Avslutar programmet...");
                     Environment.Exit(0); // Avslutar programmet
                     break;
                 default:
                     ConsoleHelper.PrintMessage("Ogiltigt val, försök igen.");
-                    break;
+                    break;// om valet är 0 eller större än 6
             }
 
             ConsoleHelper.PrintMessage("\nTryck på valfri tangent för att fortsätta...");
